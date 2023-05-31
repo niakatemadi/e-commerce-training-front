@@ -1,8 +1,6 @@
-import { useEffect, useState } from "react";
-import Header from "../components/ui/Header";
+import { useEffect, useState, useContext } from "react";
 import ProductCard from "../components/ui/ProductCard";
 import "../styles/pages/Home.scss";
-import SignUpForm from "../components/form/SignUpForm";
 
 function Home({productCategory,setProductsFilteredByCategory, productsFilteredByCategory}){
 
@@ -22,7 +20,7 @@ function Home({productCategory,setProductsFilteredByCategory, productsFilteredBy
 return (
     <>
         <div className="ProductContainer" > {    
-            displayedProducts.map((product, index) => <ProductCard title={product.title} price={product.price} description={product.description} key={index}/>)
+            displayedProducts.map((product, index) => <ProductCard product={product} key={index}/>)
         }</div>
     </>
 )
