@@ -1,11 +1,16 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 import "../../styles/components/SignUpForm.scss"
 import axios from 'axios';
-import { NavLink } from "react-router-dom";
+import { authenticationContext } from "../../App.js";
 
 function SignUpForm({setIsLogInPage}){
     const [newUser, setNewUser]=useState({});
     const [emailAlreadyUsed, setEmailAlreadyUsed]=useState(false);
+
+    const [currentUser, setCurrentUser]= useContext(authenticationContext);
+    console.log('heey');
+    console.log(currentUser);
+    console.log('heey');
 
     function handleNewUserDetails(e){
 
@@ -22,12 +27,18 @@ function SignUpForm({setIsLogInPage}){
                 "lastName": newUser.lastName,
                 "email" : newUser.email,
                 "hashedPassword" : newUser.password,
-                "gender":newUser.gender
+                "gender" : newUser.gender
         }).then(function(response){
 
             if(response.data.message == "email already used"){
                return setEmailAlreadyUsed(true);
             }
+
+            setCurrentUser(response.data.currentUser);
+
+            localStorage.setItem("token", JSON.stringify(response.data.token));
+            localStorage.setItem("currentUser", JSON.stringify(response.data.currentUser));
+
         }).catch(function(error){
             console.log(error);
         });

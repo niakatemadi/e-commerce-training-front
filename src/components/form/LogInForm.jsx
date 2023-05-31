@@ -8,10 +8,8 @@ function LogInForm({setIsLogInPage}){
     const [user, setUser]=useState({});
     const [isLoggedIn, setIsLoggedIn]= useState(true);
 
-    //
     const [currentUser, setCurrentUser]= useContext(authenticationContext);
 
-    //
     function handleUserDetails(e){
     
         setUser({...user, [e.target.name]: e.target.value})
@@ -33,7 +31,10 @@ function LogInForm({setIsLogInPage}){
 
             }else{
                 setIsLoggedIn(true);      
-                setCurrentUser(response.data);
+                setCurrentUser(response.data.currentUser);
+                localStorage.setItem("token", JSON.stringify(response.data.token));
+                localStorage.setItem("currentUser", JSON.stringify(response.data.currentUser));
+
             }
 
            
