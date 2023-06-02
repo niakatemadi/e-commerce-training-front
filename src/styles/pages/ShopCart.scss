@@ -1,0 +1,34 @@
+.ShopCart {
+    background-color: orange;
+    height: 70vh;
+    display: flex;
+    justify-content: space-around;
+
+    &__confirmOrderBloc {
+        border : 1px solid purple;
+        height: 120px;
+        width: 18em;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: center;
+        
+        @media(max-width: 600px){
+            position: absolute;
+            width: 100%;
+            bottom: 0px;
+        }
+    }
+
+    &__products {
+        border: 1px solid blue;
+        width: 75vw;
+        overflow: scroll;
+    }
+
+    @media(max-width: 800px){
+        margin-top: 20px;
+        height: 60vh;
+    }
+
+}

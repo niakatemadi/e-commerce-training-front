@@ -1,0 +1,22 @@
+.ShopCartCard {
+    display: flex;
+    justify-content: space-between;
+    height: 80px;
+    border: 1px solid green;
+
+    &__blocLeft {
+        border : 1px solid purple;
+        width: 4em;
+        height: 78px;
+;    }
+    &__blocCenter {
+        border: 1px solid green;
+        height: 78px;
+    }
+    &__blocRight {
+        border: 1px solid white;
+        height: 78px;
+        width: 50px;
+    }
+
+}
