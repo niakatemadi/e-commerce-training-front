@@ -4,6 +4,8 @@ import Authentication from "./pages/Authentication";
 import Header from "./components/ui/Header";
 import { useState, createContext, useEffect } from "react";
 import ShopCart from "./pages/ShopCart";
+import Checkout from "./pages/Checkout";
+import Profile from "./pages/Profile";
 export const authenticationContext = createContext(null);
 export const shopCartContext = createContext(null);
 
@@ -15,6 +17,11 @@ function App(){
   const [shopCartList, setShopCartList]=useState([]);
 
   useEffect(() => {
+
+    console.log("currentUser");
+    console.log(currentUser);
+    console.log("currentUser");
+
     const user = JSON.parse(localStorage.getItem('currentUser'));
     let shopCart = JSON.parse(localStorage.getItem('shopCart'));
     
@@ -41,6 +48,8 @@ function App(){
           <Routes>
             <Route path="/" element={<Home productCategory ={productCategory} setProductsFilteredByCategory={setProductsFilteredByCategory} productsFilteredByCategory={productsFilteredByCategory} />} />
             <Route path="/shop_cart" element={<ShopCart />}></Route>
+            <Route path="/checkout" element={<Checkout />}></Route>
+            <Route path="/profile" element={<Profile />}></Route>
             <Route path="/authentication" element={<Authentication />} />
           </Routes>    
       </div>

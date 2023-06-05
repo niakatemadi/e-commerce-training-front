@@ -2,7 +2,8 @@ import "../styles/pages/ShopCart.scss";
 import ShopCartCard from "../components/ui/ShopCartCard";
 import React from 'react';
 import { useContext } from "react";
-import { shopCartContext } from "../App";
+import { authenticationContext, shopCartContext } from "../App";
+import { NavLink } from "react-router-dom";
 
 function TotalPriceOfShopCart(shopCartList){
 
@@ -17,6 +18,7 @@ function TotalPriceOfShopCart(shopCartList){
   return sum;
 
 };
+
 function SumProductsInShopCart(shopCartList){
 
   const sum = shopCartList.reduce((accumulator, product) => {
@@ -33,6 +35,7 @@ function SumProductsInShopCart(shopCartList){
 const ShopCart = () => {
 
   const [shopCartList, setShopCartList] = useContext(shopCartContext);
+  const [currentUser, setCurrentUser] = useContext(authenticationContext);
 
   const totalPrice = TotalPriceOfShopCart(shopCartList);
   const sumProducts = SumProductsInShopCart(shopCartList);
@@ -45,7 +48,9 @@ const ShopCart = () => {
       <div className="ShopCart__confirmOrderBloc">
         <p>Votre commande est éligible à la livraison Standard gratuite en France métropolitaine.</p>
         <p>Sous-total ({sumProducts} articles) : {totalPrice} €</p>
-        <div className="ShopCart__confirmOrderButton">Passez la commande</div>
+        {
+         (JSON.stringify(currentUser) != '{}' && shopCartList.length > 0) ? <NavLink to="/checkout" ><div className="ShopCart__confirmOrderButton">Passez la commande</div></NavLink> : <NavLink to="/authentication"><div> Connectez vous </div> </NavLink>
+        }       
       </div>
     </div>
   )
