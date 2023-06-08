@@ -6,6 +6,8 @@ import { useState, createContext, useEffect } from "react";
 import ShopCart from "./pages/ShopCart";
 import Checkout from "./pages/Checkout";
 import Profile from "./pages/Profile";
+import CheckoutNavigation from "./components/ui/CheckoutNavigation";
+import PaymentAndDelivery from "./pages/PaymentAndDelivery";
 export const authenticationContext = createContext(null);
 export const shopCartContext = createContext(null);
 
@@ -44,10 +46,10 @@ function App(){
     <shopCartContext.Provider value={[shopCartList, setShopCartList]}>
       <div className="App">   
           <Header setProductCategory = {setProductCategory} />
-          <h1>{JSON.stringify(currentUser) == '{}' ? "" : currentUser.firstName}</h1>
           <Routes>
             <Route path="/" element={<Home productCategory ={productCategory} setProductsFilteredByCategory={setProductsFilteredByCategory} productsFilteredByCategory={productsFilteredByCategory} />} />
             <Route path="/shop_cart" element={<ShopCart />}></Route>
+            <Route path="/payment_and_Delivery" element={<PaymentAndDelivery />}></Route>
             <Route path="/checkout" element={<Checkout />}></Route>
             <Route path="/profile" element={<Profile />}></Route>
             <Route path="/authentication" element={<Authentication />} />

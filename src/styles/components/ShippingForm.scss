@@ -1,0 +1,28 @@
+.BlocOne{
+    width: 27vw;
+    min-width: 300px;
+    border: 2px solid green;
+    margin-top: 1em;
+
+    &__doubleInput {
+        display: flex;
+        justify-content: space-between;
+
+        &--input{
+            margin-top: 0.3em;
+            margin-bottom: 0.5em;
+            width: 49%;
+        }
+    }
+    &__inputBloc {
+        display: flex;
+        flex-direction: Column;
+
+        &--input {
+            margin-top: 0.5em;
+            margin-bottom: 0.5em;
+            height: 3em;
+            border-radius: 0.3em;
+        }
+    }
+}

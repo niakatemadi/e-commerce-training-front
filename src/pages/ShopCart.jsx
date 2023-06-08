@@ -4,6 +4,7 @@ import React from 'react';
 import { useContext } from "react";
 import { authenticationContext, shopCartContext } from "../App";
 import { NavLink } from "react-router-dom";
+import CheckoutNavigation from "../components/ui/CheckoutNavigation";
 
 function TotalPriceOfShopCart(shopCartList){
 
@@ -41,6 +42,7 @@ const ShopCart = () => {
   const sumProducts = SumProductsInShopCart(shopCartList);
  
   return (
+    <> <CheckoutNavigation />
     <div className='ShopCart'>
       <div className="ShopCart__products">
         { shopCartList.map((product) => <ShopCartCard title={product.title} price={product.price} quantity={product.quantity} />) }
@@ -49,10 +51,11 @@ const ShopCart = () => {
         <p>Votre commande est éligible à la livraison Standard gratuite en France métropolitaine.</p>
         <p>Sous-total ({sumProducts} articles) : {totalPrice} €</p>
         {
-         (JSON.stringify(currentUser) != '{}' && shopCartList.length > 0) ? <NavLink to="/checkout" ><div className="ShopCart__confirmOrderButton">Passez la commande</div></NavLink> : <NavLink to="/authentication"><div> Connectez vous </div> </NavLink>
+         (JSON.stringify(currentUser) != '{}' && shopCartList.length > 0) ? <NavLink to="/payment_and_delivery" ><div className="ShopCart__confirmOrderButton">Passez la commande</div></NavLink> : <NavLink to="/authentication"><div> Connectez vous </div> </NavLink>
         }       
       </div>
     </div>
+    </>
   )
 }
 
