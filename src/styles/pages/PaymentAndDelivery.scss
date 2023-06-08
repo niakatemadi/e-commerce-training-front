@@ -105,3 +105,8 @@ section {
         height: 1.6em;
     
 }
+
+.inactiveDiv {
+    pointer-events: none;
+    background-color: grey;
+}
